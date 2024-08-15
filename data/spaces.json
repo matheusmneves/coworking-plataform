@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "name": "Coworking A",
+      "location": "Downtown",
+      "price": 50,
+      "description": "Modern space in the city center.",
+      "availability": "8am-6pm"
+    },
+    {
+      "id": 2,
+      "name": "Coworking B",
+      "location": "Neighborhood A",
+      "price": 40,
+      "description": "Creative and comfortable environment.",
+      "availability": "9am-5pm"
+    },
+    {
+      "id": 3,
+      "name": "Coworking C",
+      "location": "Neighborhood B",
+      "price": 60,
+      "description": "High connectivity and support space.",
+      "availability": "24 hours"
+    }
+  ]
