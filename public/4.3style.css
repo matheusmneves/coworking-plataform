@@ -1,0 +1,116 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.h22{
+    width: 100%;
+    margin:16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.h22 h2:nth-of-type(2) {
+    color: #006f60;
+    margin-right: 48px;
+}
+.name-column {
+    color: #006f60;
+}
+
+
+header {
+    background-color: #2F5A4B; /* Background color similar to the screenshot */
+    height: 58px;
+    border-radius: 0 0 20px 20px;
+    padding: 22px 24px 0 24px;
+}
+.split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.split i {
+    font-size: 36px;
+    color: #ffffff;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info h3 {
+    margin-left: 10px;
+    color: #ffffff;
+}
+
+
+
+
+
+
+h3{
+    font-size: 16px;
+}
+
+
+
+.secondBar{
+    background-color: #006f60;
+    width: 1392px;
+    height: 96px;
+    margin: 16px 24px;
+    border-radius: 20px;
+}
+.search-bar {
+    width: calc(100% - 36px); 
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    height: 64px;
+    font-size: 24px;
+    box-sizing: border-box;
+    margin-left: 16px;
+    margin-top: 16px;
+}
+
+.search-bar:focus {
+    border-color: #006f60; 
+    outline: none;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+th {
+    background-color: #f4f4f4;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.delete-icon {
+    color: green;
+    cursor: pointer;
+    text-align: center;
+}
+.delete-icon:hover {
+    color: rgb(0, 91, 0);
+}
+
+input[type="text"], input[type="number"], select {
+    width: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.name-column input {
+    color: #006557;
+    font-weight: bold;
+}

@@ -1,26 +1,113 @@
-[
+{
+  "Spaces": [
     {
       "id": 1,
-      "name": "Coworking A",
-      "location": "Downtown",
-      "price": 50,
-      "description": "Modern space in the city center.",
-      "availability": "8am-6pm"
+      "Space Type": "Meeting Room",
+      "Capacity": 10,
+      "Booking": {
+        "Status": "Confirmed",
+        "Pricing (per month)": "$500"
+      },
+      "Action": "delete"
     },
     {
       "id": 2,
-      "name": "Coworking B",
-      "location": "Neighborhood A",
-      "price": 40,
-      "description": "Creative and comfortable environment.",
-      "availability": "9am-5pm"
+      "Space Type": "Private Office",
+      "Capacity": 5,
+      "Booking": {
+        "Status": "Pending Confirmation",
+        "Pricing (per month)": "$1200"
+      },
+      "Action": "delete"
     },
     {
       "id": 3,
-      "name": "Coworking C",
-      "location": "Neighborhood B",
-      "price": 60,
-      "description": "High connectivity and support space.",
-      "availability": "24 hours"
+      "Space Type": "Open Work Area",
+      "Capacity": 20,
+      "Booking": {
+        "Status": "Canceled",
+        "Pricing (per month)": "$300"
+      },
+      "Action": "delete"
+    },
+    {
+      "id": 4,
+      "Space Type": "Meeting Room",
+      "Capacity": 12,
+      "Booking": {
+        "Status": "Confirmed",
+        "Pricing (per month)": "$550"
+      },
+      "Action": "delete"
+    },
+    {
+      "id": 5,
+      "Space Type": "Private Office",
+      "Capacity": 8,
+      "Booking": {
+        "Status": "Confirmed",
+        "Pricing (per month)": "$1000"
+      },
+      "Action": "delete"
+    },
+    {
+      "id": 6,
+      "Space Type": "Open Work Area",
+      "Capacity": 15,
+      "Booking": {
+        "Status": "Pending Confirmation",
+        "Pricing (per month)": "$350"
+      },
+      "Action": "delete"
+    },
+    {
+      "id": 7,
+      "Space Type": "Meeting Room",
+      "Capacity": 6,
+      "Booking": {
+        "Status": "Confirmed",
+        "Pricing (per month)": "$450"
+      },
+      "Action": "delete"
+    },
+    {
+      "id": 8,
+      "Space Type": "Private Office",
+      "Capacity": 10,
+      "Booking": {
+        "Status": "Canceled",
+        "Pricing (per month)": "$1100"
+      },
+      "Action": "delete"
+    },
+    {
+      "id": 9,
+      "Space Type": "Open Work Area",
+      "Capacity": 25,
+      "Booking": {
+        "Status": "Confirmed",
+        "Pricing (per month)": "$400"
+      },
+      "Action": "delete"
+    },
+    {
+      "id": 10,
+      "Space Type": "Meeting Room",
+      "Capacity": 8,
+      "Booking": {
+        "Status": "Pending Confirmation",
+        "Pricing (per month)": "$480"
+      },
+      "Action": "delete"
+    },
+    {
+      "id": 11,
+      "Space Type": "Meeting Room",
+      "Capacity": 5,
+      "Booking": {
+        "Status": "Confirmed",
+        "Pricing (per month)": "$1000"
+      }
     }
   ]
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="4.3style.css">
+</head>
+<body>
+    <header>
+        <div class="split">
+            <a href="4.2YourSpacePage.html"><i class="fas fa-arrow-left"></i></a>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <h3>User Name</h3>
+            </div>
+        </div>
+    </header>
+
+    <div class="h22">
+        <h2>Add Information</h2>
+    </div>
+    <form id="addInformationForm">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Roles</th>
+                    <th>Email</th>
+                    <th>Space Type</th>
+                    <th>Capacity</th>
+                    <th>Booking Status</th>
+                    <th>Pricing (per month)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" id="name" placeholder="Name"></td>
+                    <td>
+                        <select id="role">
+                            <option value="Administrator">Administrator</option>
+                            <option value="Regular User">Regular User</option>
+                            <option value="Guest">Guest</option>
+                        </select>
+                    </td>
+                    <td><input type="email" id="email" placeholder="Email"></td>
+                    <td>
+                        <select id="spaceType">
+                            <option value="Meeting Room">Meeting Room</option>
+                            <option value="Private Office">Private Office</option>
+                            <option value="Open Work Area">Open Work Area</option>
+                        </select>
+                    </td>
+                    <td><input type="number" id="capacity" placeholder="Capacity"></td>
+                    <td>
+                        <select id="bookingStatus">
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Pending Confirmation">Pending Confirmation</option>
+                            <option value="Canceled">Canceled</option>
+                        </select>
+                    </td>
+                    <td><input type="text" id="pricing" placeholder="Pricing ($)" value="$"></td>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <script>
+        document.getElementById('addInformationForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const role = document.getElementById('role').value;
+            const email = document.getElementById('email').value;
+            const spaceType = document.getElementById('spaceType').value;
+            const capacity = document.getElementById('capacity').value;
+            const bookingStatus = document.getElementById('bookingStatus').value;
+            const pricing = document.getElementById('pricing').value;
+
+            const data = { name, role, email, spaceType, capacity, bookingStatus, pricing };
+
+            try {
+                const response = await fetch('/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                alert(result.message);
+
+                // Optionally, clear the form fields
+                document.getElementById('addInformationForm').reset();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

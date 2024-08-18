@@ -1,0 +1,74 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+header{
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    background-color: #006f60;
+    width: 100%;
+    height: 80px;
+    border-radius: 0 0 20px 20px;
+}
+h3{
+    font-size: 16px;
+}
+header div{
+    margin-right: 24px;
+    display: flex;
+    align-items: center;
+}
+header div h3{
+    color: white;
+    margin-left: 12px;
+}
+.secondBar{
+    background-color: #006f60;
+    width: 1392px;
+    height: 96px;
+    margin: 16px 24px;
+    border-radius: 20px;
+}
+.search-bar {
+    width: calc(100% - 32px); 
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    height: 64px;
+    font-size: 24px;
+    box-sizing: border-box;
+    margin-left: 16px;
+    margin-top: 16px;
+}
+
+.search-bar:focus {
+    border-color: #006f60; 
+    outline: none;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+th {
+    background-color: #f4f4f4;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.delete-icon {
+    color: red;
+    cursor: pointer;
+    text-align: center;
+}
+.delete-icon:hover {
+    color: darkred;
+}
+.name-column {
+    color: #006f60;
+}

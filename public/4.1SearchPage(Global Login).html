@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="4.1style.css">
+</head>
+<body>
+    <header>
+        <div>
+            <i class="fas fa-user-circle" style="font-size: 36px; color: #ffffff;"></i>
+            <a href="4.2YourSpacePage.html"><h3 id="userName">User Name</h3></a>
+        </div>
+    </header>
+    <div class="secondBar">
+        <input type="text" class="search-bar" id="searchInput" placeholder="Search..." oninput="filterTable()">
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Roles</th>
+                <th>Email</th>
+                <th>Space Type</th>
+                <th>Capacity</th>
+                <th>Booking Status</th>
+                <th>Pricing (per month)</th>
+            </tr>
+        </thead>
+        <tbody id="search-table-body">
+            <!-- Data will be inserted here dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        let allSpaces = [];
+
+        // Function to fetch and populate the table
+        async function fetchDataAndPopulateTable() {
+            try {
+                // Fetching data from the server (Assuming the server is running and serving these endpoints)
+                const [peopleResponse, spacesResponse] = await Promise.all([
+                    fetch('/people'),
+                    fetch('/spaces')
+                ]);
+
+                const people = await peopleResponse.json();
+                const spaces = await spacesResponse.json();
+
+                allSpaces = spaces.Spaces.map((space, index) => ({
+                    name: people.People[index].Name,
+                    role: people.People[index].Roles,
+                    email: people.People[index].Email,
+                    spaceType: space["Space Type"],
+                    capacity: space.Capacity,
+                    bookingStatus: space.Booking.Status,
+                    pricing: space.Booking["Pricing (per month)"]
+                }));
+
+                populateTable(allSpaces);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Function to populate the table with data
+        function populateTable(spaces) {
+            const tableBody = document.getElementById('search-table-body');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            spaces.forEach(space => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="name-column">${space.name}</td>
+                    <td>${space.role}</td>
+                    <td>${space.email}</td>
+                    <td>${space.spaceType}</td>
+                    <td>${space.capacity}</td>
+                    <td>${space.bookingStatus}</td>
+                    <td>${space.pricing}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to filter the table based on search input
+        function filterTable() {
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            const filteredSpaces = allSpaces.filter(space => {
+                return (
+                    space.name.toLowerCase().includes(searchValue) ||
+                    space.role.toLowerCase().includes(searchValue) ||
+                    space.email.toLowerCase().includes(searchValue) ||
+                    space.spaceType.toLowerCase().includes(searchValue) ||
+                    space.capacity.toString().includes(searchValue) ||
+                    space.bookingStatus.toLowerCase().includes(searchValue) ||
+                    space.pricing.toLowerCase().includes(searchValue)
+                );
+            });
+            populateTable(filteredSpaces);
+        }
+
+        // Call the function when the page loads
+        window.onload = fetchDataAndPopulateTable;
+    </script>
+</body>
+</html>
