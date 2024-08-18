@@ -5,29 +5,29 @@ const path = require('path');
 
 app.use(express.json());
 
-// Servindo arquivos estáticos da pasta 'public'
+// Serving static files from the 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Caminhos dos arquivos JSON
+// Paths to JSON files
 const peopleFilePath = path.join(__dirname, 'data', 'people.json');
 const spacesFilePath = path.join(__dirname, 'data', 'spaces.json');
 
-// Carregar dados dos arquivos JSON
+// Load data from JSON files
 let people = JSON.parse(fs.readFileSync(peopleFilePath, 'utf8'));
 let spaces = JSON.parse(fs.readFileSync(spacesFilePath, 'utf8'));
 
-// Redirecionar para a página principal '1.1FirstPage.html'
+// Redirect to the main page '1.1FirstPage.html'
 app.get('/', (req, res) => {
     res.redirect('/1.1FirstPage.html');
 });
 
-// Rota para obter todos os espaços ou filtrar por preço máximo
+// Route to get all spaces or filter by maximum price
 app.get('/spaces', (req, res) => {
     const { maxPrice } = req.query;
 
     let results = spaces.Spaces;
 
-    // Filtrar por preço máximo
+    // Filter by maximum price
     if (maxPrice) {
         results = results.filter(space => 
             parseFloat(space.Booking["Pricing (per month)"].replace('$', '')) <= parseFloat(maxPrice)
@@ -37,7 +37,7 @@ app.get('/spaces', (req, res) => {
     res.json({ Spaces: results });
 });
 
-// Rota para obter um espaço por ID
+// Route to get a space by ID
 app.get('/spaces/:id', (req, res) => {
     const spaceId = parseInt(req.params.id);
     const space = spaces.Spaces.find(s => s.id === spaceId);
@@ -49,12 +49,12 @@ app.get('/spaces/:id', (req, res) => {
     res.json(space);
 });
 
-// Rota para obter todas as pessoas
+// Route to get all people
 app.get('/people', (req, res) => {
     res.json(people);
 });
 
-// Rota para obter uma pessoa por ID
+// Route to get a person by ID
 app.get('/people/:id', (req, res) => {
     const personId = parseInt(req.params.id);
     const person = people.People.find(p => p.id === personId);
@@ -66,11 +66,11 @@ app.get('/people/:id', (req, res) => {
     res.json(person);
 });
 
-// Rota para adicionar uma nova pessoa e um novo espaço
+// Route to add a new person and a new space
 app.post('/add', (req, res) => {
     const { name, role, email, spaceType, capacity, bookingStatus, pricing } = req.body;
 
-    // Adicionar ao people.json
+    // Add to people.json
     const newPerson = {
         id: people.People.length + 1,
         Name: name,
@@ -79,7 +79,7 @@ app.post('/add', (req, res) => {
     };
     people.People.push(newPerson);
 
-    // Adicionar ao spaces.json
+    // Add to spaces.json
     const newSpace = {
         id: spaces.Spaces.length + 1,
         "Space Type": spaceType,
@@ -91,14 +91,14 @@ app.post('/add', (req, res) => {
     };
     spaces.Spaces.push(newSpace);
 
-    // Salvar alterações nos arquivos JSON
+    // Save changes to JSON files
     fs.writeFileSync(peopleFilePath, JSON.stringify(people, null, 2));
     fs.writeFileSync(spacesFilePath, JSON.stringify(spaces, null, 2));
 
     res.status(201).json({ message: 'New information added successfully!' });
 });
 
-// Iniciando o servidor
+// Starting the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on: http://localhost:${PORT}/1.1FirstPage.html`);
