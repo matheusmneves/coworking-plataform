@@ -19,5 +19,5 @@ This is a simple web platform to connect coworking space owners with users looki
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/username/coworking-platform.git
+   git clone https://github.com/matheusmneves/coworking-platform.git
    cd coworking-platform
