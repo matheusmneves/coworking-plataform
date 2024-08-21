@@ -1,0 +1,34 @@
+{
+    "Registrations": [
+      {
+        "personName": "Alice Smith",
+        "personRole": "Administrator",
+        "spaceType": "Meeting Room",
+        "location": "Downtown",
+        "pricing": "$500",
+        "availability": "Available"
+      },
+      {
+        "personName": "Bob Johnson",
+        "personRole": "Regular User",
+        "spaceType": "Private Office",
+        "location": "Uptown",
+        "pricing": "$1200",
+        "availability": "Pending Confirmation"
+      },
+      {
+        "personName": "Alice Smith",
+        "personRole": "Administrator",
+        "spaceType": "Meeting Room",
+        "pricing": "$500",
+        "bookingStatus": "Confirmed"
+      },
+      {
+        "personName": "Alice Smith",
+        "personRole": "Administrator",
+        "spaceType": "Meeting Room",
+        "pricing": "$500",
+        "bookingStatus": "Confirmed"
+      }
+    ]
+  }

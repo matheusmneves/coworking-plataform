@@ -11,6 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Paths to JSON files
 const peopleFilePath = path.join(__dirname, 'data', 'people.json');
 const spacesFilePath = path.join(__dirname, 'data', 'spaces.json');
+const coworkingFilePath = path.join(__dirname, 'data', 'coworking.json'); 
 
 // Load data from JSON files
 let people = JSON.parse(fs.readFileSync(peopleFilePath, 'utf8'));
@@ -97,6 +98,39 @@ app.post('/add', (req, res) => {
 
     res.status(201).json({ message: 'New information added successfully!' });
 });
+
+
+// Route to register new coworking data from people.json and spaces.json
+app.post('/coworking', (req, res) => {
+    const { personId, spaceId } = req.body;
+
+    const person = people.People.find(p => p.id === personId);
+    const space = spaces.Spaces.find(s => s.id === spaceId);
+
+    if (!person || !space) {
+        return res.status(404).json({ message: 'Person or Space not found' });
+    }
+
+    const registration = {
+        personName: person.Name,
+        personRole: person.Roles,
+        spaceType: space["Space Type"],
+        pricing: space.Booking["Pricing (per month)"],
+        bookingStatus: space.Booking.Status  
+    };
+
+    let coworking = { Registrations: [] };
+    if (fs.existsSync(coworkingFilePath)) {
+        coworking = JSON.parse(fs.readFileSync(coworkingFilePath, 'utf8'));
+    }
+
+    coworking.Registrations.push(registration);
+    fs.writeFileSync(coworkingFilePath, JSON.stringify(coworking, null, 2));
+
+    res.status(201).json({ message: 'Registration successful', registration });
+});
+// Invoke-WebRequest -Uri http://localhost:3000/coworking -Method POST -ContentType "application/json" -Body '{"personId": 1, "spaceId": 1}'
+
 
 // Starting the server
 const PORT = process.env.PORT || 3000;
